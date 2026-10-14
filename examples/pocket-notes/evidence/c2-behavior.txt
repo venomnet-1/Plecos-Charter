@@ -1,0 +1,19 @@
+Pocket Notes fictional example — observed local test execution
+Candidate: PN-0.2.0-c2
+Check: export behavior
+Result: PASS
+Environment: Python 3.13.5, standard library only
+Report normalization: absolute example paths replaced with <example> for portability.
+Procedure: select the exact candidate via POCKET_NOTES_CANDIDATE and run test_export.py
+Exit status: 0
+Limitations: tests cover export behavior only; no security or deployment claim.
+
+test_empty_export (test_export.ExportTests.test_empty_export) ... ok
+test_literal_unicode (test_export.ExportTests.test_literal_unicode) ... ok
+test_rejects_invalid_input (test_export.ExportTests.test_rejects_invalid_input) ... ok
+test_round_trip_and_order (test_export.ExportTests.test_round_trip_and_order) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK

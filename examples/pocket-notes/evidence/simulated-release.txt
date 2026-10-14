@@ -1,0 +1,6 @@
+SIMULATION ONLY — no actual public release or deployment occurred.
+Candidate: PN-0.2.0-c2
+Destination: https://example.invalid/pocket-notes/releases
+Simulated location: https://example.invalid/pocket-notes/releases/0.2.0
+Recovery plan: retain c1 and c2; rehearse any real rollback against the selected environment.
+The local recovery report is c2-recovery.txt. This fictional receipt grants no real authority.

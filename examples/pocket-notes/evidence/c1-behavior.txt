@@ -1,0 +1,28 @@
+Pocket Notes fictional example — observed local test execution
+Candidate: PN-0.2.0-c1
+Check: export behavior
+Result: FAIL
+Environment: Python 3.13.5, standard library only
+Report normalization: absolute example paths replaced with <example> for portability.
+Procedure: select the exact candidate via POCKET_NOTES_CANDIDATE and run test_export.py
+Exit status: 1
+Limitations: tests cover export behavior only; no security or deployment claim.
+
+test_empty_export (test_export.ExportTests.test_empty_export) ... ok
+test_literal_unicode (test_export.ExportTests.test_literal_unicode) ... FAIL
+test_rejects_invalid_input (test_export.ExportTests.test_rejects_invalid_input) ... ok
+test_round_trip_and_order (test_export.ExportTests.test_round_trip_and_order) ... ok
+
+======================================================================
+FAIL: test_literal_unicode (test_export.ExportTests.test_literal_unicode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<example>/test_export.py", line 20, in test_literal_unicode
+    self.assertIn('Café', result)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 'Café' not found in '{\n  "format": "pocket-notes-1",\n  "notes": [\n    {\n      "title": "Caf\\u00e9",\n      "body": "\\u96ea"\n    }\n  ]\n}\n'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=1)
