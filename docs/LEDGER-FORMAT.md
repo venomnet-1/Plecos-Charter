@@ -86,3 +86,5 @@ Scope closeout does not resolve issues. Corrections preserve the earlier event a
 ## Starter limits
 
 One charter adoption per ledger, UTF-8 JSONL, ledger size at most 20 MiB. No network fetching, command execution, actor authentication, automated ledger writing, or deployment. An external evidence store needs a separate trusted resolver; URLs are not accepted as local file references.
+
+JSON field names must be unique at every object depth. NaN and Infinity are rejected. A new implementation_completed event clears the active candidate; create a new candidate before verification, acceptance, publication or closeout.

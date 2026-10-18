@@ -1,5 +1,7 @@
 # Complete process
 
+See [the structure map](STRUCTURE.md) for document roles and authority boundaries.
+
 ```mermaid
 flowchart LR
   A[Adopt charter] --> B[Approve scope]

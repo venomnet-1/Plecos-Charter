@@ -61,3 +61,7 @@ Propose an amendment, preserve the previous revision, and record owner adoption.
 ## 10. Starting a session
 
 Read this charter, the ledger, and the current context. Identify the active scope and existing authority. Continue authorized work; ask only for missing decisions or genuine boundaries. Finish with an accurate context update and any necessary ledger events.
+
+## 11. Supporting records
+
+Use SCOPE.md for bounded work, REQUIREMENTS.md for the evidence map, DECISION.md for material choices, RISK-REVIEW.md for concrete risks, HANDOFF.md for session transfer, and AMENDMENT.md for proposed charter changes. Supporting records do not outrank the adopted charter or canonical ledger. Use only those needed for the work.

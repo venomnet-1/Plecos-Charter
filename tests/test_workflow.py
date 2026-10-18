@@ -133,9 +133,32 @@ class WorkflowTests(unittest.TestCase):
         first = subprocess.run(command, capture_output=True, text=True)
         self.assertEqual(first.returncode, 0, first.stderr)
         self.assertEqual((destination / 'docs/ledger.jsonl').read_text(), '')
+        for name in ['DECISION.md', 'RISK-REVIEW.md', 'HANDOFF.md', 'AMENDMENT.md', 'REQUIREMENTS.md']:
+            self.assertTrue((destination / 'docs' / name).is_file(), name)
         second = subprocess.run(command, capture_output=True, text=True)
         self.assertNotEqual(second.returncode, 0)
         self.assertIn('already exists', second.stderr)
+
+    def test_duplicate_top_level_json_field_is_rejected(self):
+        p = self.project / 'docs/ledger.jsonl'
+        p.write_text(p.read_text().replace('"kind":', '"kind":"decision","kind":', 1))
+        with self.assertRaisesRegex(checker.LedgerError, 'duplicate JSON field'):
+            checker.validate(self.project)
+
+    def test_duplicate_nested_json_field_is_rejected(self):
+        p = self.project / 'docs/ledger.jsonl'
+        p.write_text(p.read_text().replace('"role":', '"role":"assistant","role":', 1))
+        with self.assertRaisesRegex(checker.LedgerError, 'duplicate JSON field'):
+            checker.validate(self.project)
+
+    def test_nonfinite_json_is_rejected(self):
+        self.events[0]['details']['extension'] = float('nan')
+        self.rejected('non-finite JSON constants')
+
+    def test_implementation_change_retires_old_candidate(self):
+        changed = json.loads(json.dumps(self.events[7]))
+        self.events.insert(13, changed)
+        self.rejected('latest candidate')
 
 if __name__ == '__main__':
     unittest.main()

@@ -49,6 +49,16 @@ def file_hash(root, reference):
     require(digest.hexdigest() == expected, f'file hash mismatch: {raw}')
     return raw
 
+def strict_object(pairs):
+    result = {}
+    for key, value in pairs:
+        require(key not in result, 'duplicate JSON field')
+        result[key] = value
+    return result
+
+def reject_constant(value):
+    raise LedgerError('non-finite JSON constants are not allowed')
+
 def read_events(path):
     require(path.is_file(), 'docs/ledger.jsonl is missing')
     require(path.stat().st_size <= 20 * 1024 * 1024, 'ledger exceeds starter limit of 20 MiB')
@@ -57,7 +67,7 @@ def read_events(path):
         for line_no, line in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
             require(bool(line.strip()), f'blank line at {line_no}')
             try:
-                event = json.loads(line)
+                event = json.loads(line, object_pairs_hook=strict_object, parse_constant=reject_constant)
             except json.JSONDecodeError:
                 raise LedgerError(f'invalid JSON at line {line_no}') from None
             require(isinstance(event, dict), f'line {line_no} must be a JSON object')
@@ -161,6 +171,7 @@ def validate(root):
                             text(details, 'reason')
                         elif kind == 'implementation_completed':
                             scope['implemented'] = True
+                            scope['candidate'] = None
                         elif kind == 'candidate_created':
                             require(scope['implemented'], 'record implementation before creating a candidate')
                             cid = text(details, 'candidate')

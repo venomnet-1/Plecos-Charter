@@ -4,7 +4,7 @@ The Charter Ledger starter framework.
 
 A small framework for keeping AI-assisted software work authorized, traceable, and honest about completion.
 
-**Starter edition 0.1.0 · Python 3.10+ · MIT license**
+**Starter edition 0.1.1 · Python 3.10+ · MIT license**
 
 An AI can implement a change without knowing whether it was authorized, tested, accepted, or published. Charter Ledger keeps those facts separate:
 
@@ -45,6 +45,7 @@ A scope approval can authorize a batch of routine edits and local checks. Ask ag
 
 ## Read the package
 
+- [Complete charter structure](docs/STRUCTURE.md)
 - [Complete process](docs/PROCESS.md)
 - [Mock charter](templates/docs/CHARTER.md)
 - [Ledger format and event rules](docs/LEDGER-FORMAT.md)
@@ -53,6 +54,7 @@ A scope approval can authorize a batch of routine edits and local checks. Ask ag
 - [GitHub adoption and release checklist](docs/GITHUB.md)
 - [AI session prompts](docs/PROMPTS.md)
 - [Design tradeoffs](docs/DESIGN.md)
+- [Structure and checker review](docs/REVIEW-2026-10-18.md)
 
 ## What the checker does
 
